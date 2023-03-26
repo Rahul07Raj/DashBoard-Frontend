@@ -17,10 +17,13 @@ const UpdateProduct = () => {
 
   const updateProductDetails = async () => {
     console.log(params);
-    let result = await fetch(`http://localhost:5000/product/${params.id}`,{
-    headers:{
-      authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
-    }}
+    let result = await fetch(
+      `https://e-dashboard-backend.onrender.com/product/${params.id}`,
+      {
+        headers: {
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      }
     );
     result = await result.json();
     setName(result.name);
@@ -31,17 +34,20 @@ const UpdateProduct = () => {
 
   const handleUpdateProduct = async () => {
     console.log({ name, price, category, company });
-    let result = await fetch(`http://localhost:5000/product/${params.id}`, {
-      method: "Put",
-      body: JSON.stringify({ name, price, category, company }),
-      headers: {
-        "Content-Type": "application/json",
-        authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
-      },
-    });
+    let result = await fetch(
+      `https://e-dashboard-backend.onrender.com/product/${params.id}`,
+      {
+        method: "Put",
+        body: JSON.stringify({ name, price, category, company }),
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      }
+    );
     result = await result.json();
     console.log(result);
-    navigate('/')
+    navigate("/");
   };
 
   return (

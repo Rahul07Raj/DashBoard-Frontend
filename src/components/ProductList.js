@@ -12,7 +12,7 @@ const ProductList = () => {
   }, []);
 
   const getProducts = async () => {
-    let result = await fetch("http://localhost:5000/products", {
+    let result = await fetch("https://e-dashboard-backend.onrender.com/products", {
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
       },
@@ -22,7 +22,7 @@ const ProductList = () => {
   };
 
   const deleteProduct = async (id) => {
-    let result = await fetch(`http://localhost:5000/product/${id}`, {
+    let result = await fetch(`https://e-dashboard-backend.onrender.com/product/${id}`, {
       method: "Delete",
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -38,7 +38,7 @@ const ProductList = () => {
   const searchHandle = async (search) => {
     // setSearchInput(e.target.value)
     if (search) {
-      let result = await fetch(`http://localhost:5000/search/${search}`, {
+      let result = await fetch(`https://e-dashboard-backend.onrender.com/search/${search}`, {
         headers: {
           authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
