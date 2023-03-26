@@ -17,20 +17,20 @@ const AddProduct = () => {
       return false;
     }
     console.log(name, price, category, company);
+    console.log(JSON.parse(localStorage.getItem("token")));
     const userId = JSON.parse(localStorage.getItem("user"))._id;
     let result = await fetch("http://localhost:5000/add-product", {
       method: "post",
       body: JSON.stringify({ name, price, category, company, userId }),
-      headers: { "Content-Type": "application/json",
-      authorization:`bearer ${JSON.parse(localStorage.getItem('token'))}`
-    },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+      },
     });
     result = await result.json();
-    console.log(result);
-    // if (error) {
-    //   navigate("/");
-    //   console.log("hii");
-    // }
+    if (result._id) {
+      navigate("/");
+    }
   };
 
   return (
